@@ -1,2 +1,2 @@
 # RuniCash
-In this project i use retrofit and work with api thatS good check it
+This Project is made by retrofit and work with api itS good

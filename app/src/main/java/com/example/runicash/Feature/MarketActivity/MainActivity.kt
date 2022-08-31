@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.runicash.apiManager.ApiManager
@@ -26,8 +28,22 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
             startActivity(intent)
         }
 
+        binding.refreshLayout.setOnRefreshListener {
+
+            initUi()
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.refreshLayout.isRefreshing = false
+            }, 1500)
+
+        }
+
         initUi()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initUi()
     }
 
     private fun initUi() {

@@ -1,14 +1,17 @@
-package com.example.runicash.feature.MarketActivity
+package com.example.runicash.Feature.MarketActivity
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.runicash.apiManager.ApiManager
+import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
+    private lateinit var myAdapter :MarketCoinsAdapter
     private lateinit var binding: ActivityMainBinding
     lateinit var dataNews :ArrayList<Pair<String, String>>
     private val apiManager = ApiManager()
@@ -18,12 +21,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.layoutCoinList.btnShowMoreCoinList.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.livecoinwatch.com/"))
+            startActivity(intent)
+        }
+
         initUi()
 
     }
 
     private fun initUi() {
         getTopNews()
+        getTopCoins()
     }
 
     private fun getTopNews() {
@@ -42,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-
     private fun refreshNews () {
 
         val randomNews = (0..49).random()
@@ -55,6 +63,36 @@ class MainActivity : AppCompatActivity() {
         binding.layoutNews.txtNews.setOnClickListener {
             refreshNews()
         }
+
+    }
+
+    private fun getTopCoins() {
+
+        apiManager.getTopCoins(object :ApiManager.ApiCallback<List<TopCoins.Data>> {
+            override fun onSuccess(data: List<TopCoins.Data>) {
+
+                showDataInRecyclerView(data)
+
+            }
+
+            override fun onError(errorMessage: String) {
+
+            }
+
+
+        } )
+
+    }
+
+    private fun showDataInRecyclerView(data :List<TopCoins.Data>) {
+
+        myAdapter = MarketCoinsAdapter(ArrayList(data), this)
+        binding.layoutCoinList.recyclerCoinList.adapter = myAdapter
+        binding.layoutCoinList.recyclerCoinList.layoutManager = LinearLayoutManager(this)
+
+    }
+
+    override fun onItemClicked(dataCoin: TopCoins.Data) {
 
     }
 

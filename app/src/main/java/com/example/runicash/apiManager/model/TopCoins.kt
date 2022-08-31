@@ -39,8 +39,6 @@ data class TopCoins(
             val blockNumber: Int,
             @SerializedName("BlockReward")
             val blockReward: Double,
-            @SerializedName("BlockTime")
-            val blockTime: Double,
             @SerializedName("DocumentType")
             val documentType: String,
             @SerializedName("FullName")
@@ -55,8 +53,6 @@ data class TopCoins(
             val maxSupply: Double,
             @SerializedName("Name")
             val name: String,
-            @SerializedName("NetHashesPerSecond")
-            val netHashesPerSecond: Double,
             @SerializedName("ProofType")
             val proofType: String,
             @SerializedName("Rating")
@@ -102,10 +98,6 @@ data class TopCoins(
                 val cHANGEPCTDAY: String,
                 @SerializedName("CHANGEPCTHOUR")
                 val cHANGEPCTHOUR: String,
-                @SerializedName("CIRCULATINGSUPPLY")
-                val cIRCULATINGSUPPLY: String,
-                @SerializedName("CIRCULATINGSUPPLYMKTCAP")
-                val cIRCULATINGSUPPLYMKTCAP: String,
                 @SerializedName("CONVERSIONSYMBOL")
                 val cONVERSIONSYMBOL: String,
                 @SerializedName("CONVERSIONTYPE")

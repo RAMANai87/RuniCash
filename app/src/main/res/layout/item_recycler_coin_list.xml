@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:clickable="true"
+    android:focusable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/imgItemRecyclerMain"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCoinName"
+        style="@style/CoinBitText.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="BTC"
+        app:layout_constraintStart_toEndOf="@+id/imgItemRecyclerMain"
+        app:layout_constraintTop_toTopOf="@+id/imgItemRecyclerMain" />
+
+    <TextView
+        android:maxLength="10"
+        style="@style/CoinBitText.Body1Alternate"
+        android:id="@+id/txtCoinBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="0.0 %"
+        app:layout_constraintBottom_toBottomOf="@+id/imgItemRecyclerMain"
+        app:layout_constraintStart_toEndOf="@+id/imgItemRecyclerMain"
+        app:layout_constraintTop_toBottomOf="@+id/txtCoinName" />
+
+    <TextView
+        android:id="@+id/txtPrice"
+        style="@style/CoinBitText.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="$3,185"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCoinName" />
+
+    <TextView
+        android:maxLength="10"
+        android:id="@+id/txtMarketCap"
+        style="@style/CoinBitText.Body1Alternate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:text="$2,4 Million "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,12 +19,12 @@ class MarketCoinsAdapter(
     RecyclerView.Adapter<MarketCoinsAdapter.MarketViewHolder>() {
     private lateinit var binding: ItemRecyclerCoinListBinding
 
-    inner class MarketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MarketViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
         fun bindCoins(dataCoin: TopCoins.Data) {
 
-            binding.txtPrice.text = "$ " + dataCoin.dISPLAY.uSD.pRICE
+            binding.txtPrice.text = dataCoin.dISPLAY.uSD.pRICE
             binding.txtCoinName.text = dataCoin.coinInfo.fullName
 
             val change = dataCoin.rAW.uSD.cHANGE24HOUR
@@ -62,7 +62,9 @@ class MarketCoinsAdapter(
                 .load(BASE_URL_IMAGE + dataCoin.coinInfo.imageUrl)
                 .into(binding.imgItemRecyclerMain)
 
-            recyclerCallBack.onItemClicked(dataCoin)
+            binding.root.setOnClickListener {
+                recyclerCallBack.onItemClicked(dataCoin)
+            }
 
         }
 

@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.runicash.Feature.CoinActivity.CoinActivity
 import com.example.runicash.apiManager.ApiManager
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityMainBinding
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        initUi()
+
         binding.layoutCoinList.btnShowMoreCoinList.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.livecoinwatch.com/"))
             startActivity(intent)
@@ -37,10 +40,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
 
         }
 
-        initUi()
-
     }
-
     override fun onResume() {
         super.onResume()
         initUi()
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
         getTopCoins()
     }
 
+    // this is function to get all news from api
     private fun getTopNews() {
 
         apiManager.getTopNews(object : ApiManager.ApiCallback<ArrayList<Pair<String, String>>> {
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
 
     }
 
+    // this function used to get top coin
     private fun getTopCoins() {
 
         apiManager.getTopCoins(object :ApiManager.ApiCallback<List<TopCoins.Data>> {
@@ -99,7 +101,6 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
         } )
 
     }
-
     private fun showDataInRecyclerView(data :List<TopCoins.Data>) {
 
         myAdapter = MarketCoinsAdapter(ArrayList(data), this)
@@ -109,6 +110,9 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
     }
 
     override fun onItemClicked(dataCoin: TopCoins.Data) {
+
+        val intent = Intent(this, CoinActivity::class.java)
+        startActivity(intent)
 
     }
 

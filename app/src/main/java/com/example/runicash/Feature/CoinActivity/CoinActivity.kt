@@ -3,18 +3,27 @@ package com.example.runicash.Feature.CoinActivity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.runicash.Feature.MarketActivity.BUNDLE_ABOUT_COIN
+import com.example.runicash.Feature.MarketActivity.BUNDLE_COIN
+import com.example.runicash.Feature.MarketActivity.SEND_BUNDLE_KEY
 import com.example.runicash.Feature.MarketActivity.SEND_DATA_KEY
-import com.example.runicash.R
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityCoinBinding
 
 class CoinActivity : AppCompatActivity() {
-    private lateinit var fromIntentData : TopCoins.Data
+    private lateinit var dataCurrentCoin: TopCoins.Data
+    private lateinit var aboutCurrentData: AboutCoinItem
     private lateinit var binding: ActivityCoinBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityCoinBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val fromIntent = intent.getBundleExtra(SEND_BUNDLE_KEY)!!
+
+        dataCurrentCoin = fromIntent.getParcelable<TopCoins.Data>(BUNDLE_COIN)!!
+        aboutCurrentData = fromIntent.getParcelable<AboutCoinItem>(BUNDLE_ABOUT_COIN)!!
+        binding.layoutToolbar.toolBarMain.title = dataCurrentCoin.coinInfo.fullName
 
         initUi()
     }
@@ -28,24 +37,25 @@ class CoinActivity : AppCompatActivity() {
     private fun initChart() {
 
     }
-
     private fun initAbout() {
 
-    }
+        binding.layoutAbout.linkWebsite.text = aboutCurrentData.coinWeb
+        binding.layoutAbout.linkGithub.text = aboutCurrentData.coinGithub
+        binding.layoutAbout.linkReddit.text = aboutCurrentData.coinReddit
+        binding.layoutAbout.linkTwitter.text = aboutCurrentData.coinTwitter
 
+    }
     @SuppressLint("SetTextI18n")
     private fun initStatistics() {
 
-        fromIntentData = intent.getParcelableExtra(SEND_DATA_KEY)!!
-
-        binding.layoutStatistics.tvOpenAmount.text =  fromIntentData.dISPLAY.uSD.oPEN24HOUR
-        binding.layoutStatistics.tvTodaysHighAmount.text = fromIntentData.dISPLAY.uSD.hIGH24HOUR
-        binding.layoutStatistics.tvTodaysLow.text = fromIntentData.dISPLAY.uSD.lOW24HOUR
-        binding.layoutStatistics.tvChangeTodays.text = fromIntentData.dISPLAY.uSD.cHANGE24HOUR
-        binding.layoutStatistics.txtAlgorithm.text = fromIntentData.coinInfo.algorithm
-        binding.layoutStatistics.txtTotalVolume.text = fromIntentData.dISPLAY.uSD.tOTALVOLUME24H
-        binding.layoutStatistics.txtMarketCapStatistic.text = fromIntentData.dISPLAY.uSD.mKTCAP
-        binding.layoutStatistics.txtSupply.text = fromIntentData.dISPLAY.uSD.sUPPLY
+        binding.layoutStatistics.tvOpenAmount.text = dataCurrentCoin.dISPLAY.uSD.oPEN24HOUR
+        binding.layoutStatistics.tvTodaysHighAmount.text = dataCurrentCoin.dISPLAY.uSD.hIGH24HOUR
+        binding.layoutStatistics.tvTodaysLow.text = dataCurrentCoin.dISPLAY.uSD.lOW24HOUR
+        binding.layoutStatistics.tvChangeTodays.text = dataCurrentCoin.dISPLAY.uSD.cHANGE24HOUR
+        binding.layoutStatistics.txtAlgorithm.text = dataCurrentCoin.coinInfo.algorithm
+        binding.layoutStatistics.txtTotalVolume.text = dataCurrentCoin.dISPLAY.uSD.tOTALVOLUME24H
+        binding.layoutStatistics.txtMarketCapStatistic.text = dataCurrentCoin.dISPLAY.uSD.mKTCAP
+        binding.layoutStatistics.txtSupply.text = dataCurrentCoin.dISPLAY.uSD.sUPPLY
 
     }
 }

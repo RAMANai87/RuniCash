@@ -1,6 +1,8 @@
 package com.example.runicash.Feature.CoinActivity
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.runicash.Feature.MarketActivity.BUNDLE_ABOUT_COIN
@@ -37,6 +39,7 @@ class CoinActivity : AppCompatActivity() {
     private fun initChart() {
 
     }
+
     private fun initAbout() {
 
         binding.layoutAbout.linkWebsite.text = aboutCurrentData.coinWeb
@@ -44,7 +47,29 @@ class CoinActivity : AppCompatActivity() {
         binding.layoutAbout.linkReddit.text = aboutCurrentData.coinReddit
         binding.layoutAbout.linkTwitter.text = aboutCurrentData.coinTwitter
 
+        binding.layoutAbout.linkReddit.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(aboutCurrentData.coinReddit))
+            startActivity(intent)
+
+        }
+
+        binding.layoutAbout.linkWebsite.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(aboutCurrentData.coinWeb))
+            startActivity(intent)
+
+        }
+
+        binding.layoutAbout.linkGithub.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(aboutCurrentData.coinGithub))
+            startActivity(intent)
+
+        }
+
     }
+
     @SuppressLint("SetTextI18n")
     private fun initStatistics() {
 

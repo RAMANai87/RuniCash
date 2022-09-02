@@ -76,6 +76,8 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
             style="@style/CoinBitText.Body1"
             android:id="@+id/linkWebsite"
             android:layout_width="wrap_content"
@@ -86,6 +88,8 @@
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
             style="@style/CoinBitText.Body1"
             android:id="@+id/linkTwitter"
             android:layout_width="wrap_content"
@@ -96,6 +100,8 @@
             app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
             style="@style/CoinBitText.Body1"
             android:id="@+id/linkReddit"
             android:layout_width="wrap_content"
@@ -106,6 +112,8 @@
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
             style="@style/CoinBitText.Body1"
             android:id="@+id/linkGithub"
             android:layout_width="wrap_content"

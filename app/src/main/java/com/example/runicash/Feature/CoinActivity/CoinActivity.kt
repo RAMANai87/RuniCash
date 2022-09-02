@@ -30,6 +30,7 @@ class CoinActivity : AppCompatActivity() {
         initUi()
     }
 
+    // load all part of this activity
     private fun initUi() {
         initStatistics()
         initAbout()
@@ -39,7 +40,6 @@ class CoinActivity : AppCompatActivity() {
     private fun initChart() {
 
     }
-
     private fun initAbout() {
 
         binding.layoutAbout.linkWebsite.text = aboutCurrentData.coinWeb
@@ -69,7 +69,6 @@ class CoinActivity : AppCompatActivity() {
         }
 
     }
-
     @SuppressLint("SetTextI18n")
     private fun initStatistics() {
 

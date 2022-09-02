@@ -13,6 +13,8 @@ import com.example.runicash.apiManager.ApiManager
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityMainBinding
 
+const val SEND_DATA_KEY = "dataToSend"
+
 class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
     private lateinit var myAdapter :MarketCoinsAdapter
     private lateinit var binding: ActivityMainBinding
@@ -112,6 +114,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
     override fun onItemClicked(dataCoin: TopCoins.Data) {
 
         val intent = Intent(this, CoinActivity::class.java)
+        intent.putExtra(SEND_DATA_KEY, dataCoin)
         startActivity(intent)
 
     }

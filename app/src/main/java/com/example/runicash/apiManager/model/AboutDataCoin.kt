@@ -9,24 +9,24 @@ class AboutDataCoin : ArrayList<AboutDataCoin.AboutDataCoinItem>(){
     @Parcelize
     data class AboutDataCoinItem(
         @SerializedName("currencyName")
-        val currencyName: String,
+        val currencyName: String?,
         @SerializedName("info")
         val info: Info
     ) : Parcelable {
         @Parcelize
         data class Info(
             @SerializedName("desc")
-            val desc: String,
+            val desc: String?,
             @SerializedName("forum")
-            val forum: String,
+            val forum: String?,
             @SerializedName("github")
-            val github: String,
+            val github: String?,
             @SerializedName("reddit")
-            val reddit: String,
+            val reddit: String?,
             @SerializedName("twt")
-            val twt: String,
+            val twt: String?,
             @SerializedName("web")
-            val web: String
+            val web: String?
         ) : Parcelable
     }
 }

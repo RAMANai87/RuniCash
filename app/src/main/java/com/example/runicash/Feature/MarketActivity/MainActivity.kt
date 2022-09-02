@@ -16,7 +16,6 @@ import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityMainBinding
 import com.google.gson.Gson
 
-const val SEND_DATA_KEY = "dataToSend"
 const val BUNDLE_COIN = "bundle1"
 const val BUNDLE_ABOUT_COIN = "bundle2"
 const val SEND_BUNDLE_KEY = "bundle"
@@ -46,14 +45,9 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
 
         }
 
+        initUi()
         getAboutCoinData()
 
-        initUi()
-
-    }
-    override fun onResume() {
-        super.onResume()
-        initUi()
     }
 
     private fun initUi() {
@@ -61,7 +55,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
         getTopCoins()
     }
 
-    // this is function to get all news from api
+    // this is function to get all news from api =>
     private fun getTopNews() {
 
         apiManager.getTopNews(object : ApiManager.ApiCallback<ArrayList<Pair<String, String>>> {
@@ -72,7 +66,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
             }
 
             override fun onError(errorMessage: String) {
-                Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "Please Check Your Connection !!", Toast.LENGTH_LONG).show()
             }
 
         })
@@ -93,7 +87,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
 
     }
 
-    // this function used to get top coin
+    // this function used to get top coin =>
     private fun getTopCoins() {
 
         apiManager.getTopCoins(object : ApiManager.ApiCallback<List<TopCoins.Data>> {
@@ -124,13 +118,14 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
 
         val bundle = Bundle()
         bundle.putParcelable(BUNDLE_COIN, dataCoin)
-        bundle.putParcelable(BUNDLE_ABOUT_COIN, aboutCoinItemMap[dataCoin.coinInfo.name])
+        bundle.putParcelable(BUNDLE_ABOUT_COIN, aboutCoinItemMap[dataCoin.coinInfo!!.name])
 
         intent.putExtra(SEND_BUNDLE_KEY, bundle)
         startActivity(intent)
 
     }
 
+    // get data to use in about part =>
     private fun getAboutCoinData() {
 
         val currencyInfoToString = applicationContext.assets
@@ -143,7 +138,7 @@ class MainActivity : AppCompatActivity(), MarketCoinsAdapter.RecyclerCallBack {
         val aboutCoinToSend = gson.fromJson(currencyInfoToString, AboutDataCoin::class.java)
 
         aboutCoinToSend.forEach {
-            aboutCoinItemMap[it.currencyName] = AboutCoinItem(
+            aboutCoinItemMap[it.currencyName!!] = AboutCoinItem(
                 it.info.web, it.info.github, it.info.twt, it.info.reddit
             )
         }

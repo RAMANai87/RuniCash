@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AboutCoinItem(
-    var coinWeb: String? = "sorry,There is no data",
-    var coinGithub: String? = "sorry,There is no data" ,
-    var coinTwitter: String? = "sorry,There is no data" ,
-    var coinReddit: String? = "sorry,There is no data"
-) :Parcelable
+    var coinWeb: String?,
+    var coinGithub: String?,
+    var coinTwitter: String?,
+    var coinReddit: String?
+) : Parcelable

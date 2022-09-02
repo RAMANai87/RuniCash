@@ -14,7 +14,6 @@ interface ApiService {
         @Query("sortOrder") sortOrder: String = "popular"
     ): Call<TopNews>
 
-
     @Headers(API_KEY)
     @GET("top/totalvolfull")
     fun getTopCoins(

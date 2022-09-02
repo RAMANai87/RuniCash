@@ -8,7 +8,6 @@ import android.os.Bundle
 import com.example.runicash.Feature.MarketActivity.BUNDLE_ABOUT_COIN
 import com.example.runicash.Feature.MarketActivity.BUNDLE_COIN
 import com.example.runicash.Feature.MarketActivity.SEND_BUNDLE_KEY
-import com.example.runicash.Feature.MarketActivity.SEND_DATA_KEY
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ActivityCoinBinding
 

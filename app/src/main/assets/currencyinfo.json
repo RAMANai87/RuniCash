@@ -24683,5 +24683,27 @@
       "forum": "",
       "github": "https://github.com/securecloudnet/SecureCloud/"
     }
+  },
+  {
+    "currencyName": "LUNC",
+    "info": {
+      "desc": "it is a crypto currency",
+      "web": "",
+      "twt": "",
+      "reddit": "",
+      "forum": "",
+      "github": ""
+    }
+  },
+  {
+    "currencyName": "BUSD",
+    "info": {
+      "desc": "it is a crypto currency",
+      "web": "",
+      "twt": "",
+      "reddit": "",
+      "forum": "",
+      "github": ""
+    }
   }
 ]

@@ -19,7 +19,7 @@ class MarketCoinsAdapter(
     RecyclerView.Adapter<MarketCoinsAdapter.MarketViewHolder>() {
     private lateinit var binding: ItemRecyclerCoinListBinding
 
-    inner class MarketViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MarketViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @SuppressLint("SetTextI18n")
         fun bindCoins(dataCoin: TopCoins.Data) {
@@ -30,25 +30,25 @@ class MarketCoinsAdapter(
             val change = dataCoin.rAW.uSD.cHANGE24HOUR
             if (change > 0) {
 
-                binding.txtCoinBase.text = change.toString().substring(0, 5) + "%"
-                binding.txtCoinBase.setTextColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.colorGain
+                    binding.txtCoinBase.text = change.toString().substring(0, 5) + "%"
+                    binding.txtCoinBase.setTextColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.colorGain
+                        )
                     )
-                )
 
-            } else if (change < 0) {
+                } else if (change < 0) {
 
-                binding.txtCoinBase.text = change.toString().substring(0, 5) + "%"
-                binding.txtCoinBase.setTextColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        R.color.colorLoss
+                    binding.txtCoinBase.text = change.toString().substring(0, 5) + "%"
+                    binding.txtCoinBase.setTextColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.colorLoss
+                        )
                     )
-                )
 
-            }
+                }
 
             val marketCap = dataCoin.rAW.uSD.mKTCAP / 1000000000
             if (marketCap > 0) {
@@ -58,6 +58,7 @@ class MarketCoinsAdapter(
 
             }
 
+            // load image
             Glide.with(itemView)
                 .load(BASE_URL_IMAGE + dataCoin.coinInfo.imageUrl)
                 .into(binding.imgItemRecyclerMain)
@@ -85,6 +86,7 @@ class MarketCoinsAdapter(
         return data.size
     }
 
+    // tell to activity main to clicked on a coin and send it =>
     interface RecyclerCallBack {
         fun onItemClicked(dataCoin: TopCoins.Data)
     }

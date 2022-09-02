@@ -27,7 +27,7 @@ class ApiManager {
         apiService = retrofit.create(ApiService::class.java)
 
     }
-
+    // for use in get all news from api
     fun getTopNews(apiCallback: ApiCallback<ArrayList<Pair<String, String>>>) {
 
         apiService.getTopNews().enqueue(object : Callback<TopNews> {
@@ -55,7 +55,7 @@ class ApiManager {
         })
 
     }
-
+    // get all coins from api
     fun getTopCoins(apiCallback: ApiCallback<List<TopCoins.Data>>) {
 
         apiService.getTopCoins().enqueue(object : Callback<TopCoins> {
@@ -77,6 +77,7 @@ class ApiManager {
 
     }
 
+    // to tell main activity does the work hit an error or succeed
     interface ApiCallback<T> {
 
         fun onSuccess(data: T)

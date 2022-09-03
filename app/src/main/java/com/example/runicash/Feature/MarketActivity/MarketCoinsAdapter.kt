@@ -1,5 +1,6 @@
 package com.example.runicash.Feature.MarketActivity
 
+import com.example.runicash.Feature.CoinActivity.BASE_URL_IMAGE
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.runicash.R
-import com.example.runicash.apiManager.BASE_URL_IMAGE
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.databinding.ItemRecyclerCoinListBinding
 

@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.runicash.Feature.MarketActivity.BUNDLE_ABOUT_COIN
 import com.example.runicash.Feature.MarketActivity.BUNDLE_COIN
 import com.example.runicash.Feature.MarketActivity.SEND_BUNDLE_KEY
@@ -34,19 +36,43 @@ class CoinActivity : AppCompatActivity() {
 
         initUi()
     }
-
     // load all part of this activity
     private fun initUi() {
         initStatistics()
         initAbout()
         initChart()
     }
-// -----------------------------------------------
+    // -----------------------------------------------
+    @SuppressLint("SetTextI18n")
     private fun initChart() {
 
         var period: String = HOUR
-
         requestAndShowChartData(period)
+
+        binding.layoutChart.txtChartPrice.text = dataCurrentCoin.dISPLAY.uSD.pRICE
+        binding.layoutChart.txtChartChange1.text = dataCurrentCoin.dISPLAY.uSD.cHANGE24HOUR
+        binding.layoutChart.txtChartChange2.text = dataCurrentCoin.rAW.uSD.cHANGEPCT24HOUR.toString().substring(0, 3) + " %"
+        val change24h = dataCurrentCoin.rAW.uSD.cHANGEPCT24HOUR
+        if (change24h > 0) {
+
+            binding.layoutChart.txtChartChange2.setTextColor(
+                ContextCompat.getColor(this, R.color.colorGain)
+            )
+
+            binding.layoutChart.txtChartUpDown.text = "▲"
+            binding.layoutChart.txtChartUpDown.setTextColor(ContextCompat.getColor(this, R.color.colorGain))
+            binding.layoutChart.sparkChartMain.lineColor = ContextCompat.getColor(this, R.color.colorGain)
+
+        } else if (change24h < 0) {
+            binding.layoutChart.txtChartChange2.setTextColor(
+                ContextCompat.getColor(this, R.color.colorLoss)
+            )
+
+            binding.layoutChart.txtChartUpDown.text = "▼"
+            binding.layoutChart.txtChartUpDown.setTextColor(ContextCompat.getColor(this, R.color.colorLoss))
+            binding.layoutChart.sparkChartMain.lineColor = ContextCompat.getColor(this, R.color.colorLoss)
+
+        }
 
         binding.layoutChart.radioGroup.setOnCheckedChangeListener { _, radioButton ->
 
@@ -79,8 +105,15 @@ class CoinActivity : AppCompatActivity() {
             requestAndShowChartData(period)
 
         }
+        binding.layoutChart.sparkChartMain.setScrubListener {
 
+            if (it == null) {
+                binding.layoutChart.txtChartPrice.text = dataCurrentCoin.dISPLAY.uSD.pRICE
+            } else {
+                binding.layoutChart.txtChartPrice.text = "$ " + (it as ChartData.Data).close.toString()
+            }
 
+        }
 
     }
     private fun requestAndShowChartData(period: String) {
@@ -97,13 +130,13 @@ class CoinActivity : AppCompatActivity() {
                 }
 
                 override fun onError(errorMessage: String) {
-                    binding.layoutChart.errorOnShowChart.visibility
+                    binding.layoutChart.errorOnShowChart.isVisible = true
                 }
 
             })
 
     }
-// -----------------------------------------------
+    // -----------------------------------------------
     private fun initAbout() {
 
         binding.layoutAbout.linkWebsite.text = aboutCurrentData.coinWeb
@@ -133,7 +166,7 @@ class CoinActivity : AppCompatActivity() {
         }
 
     }
-// -----------------------------------------------
+    // -----------------------------------------------
     @SuppressLint("SetTextI18n")
     private fun initStatistics() {
 

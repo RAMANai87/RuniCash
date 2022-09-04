@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:paddingEnd="8dp"
-        android:text="@string/r"
-        android:textColor="@color/colorGain"
-        android:textSize="18sp"
+        android:text="▲"
+        android:textColor="@color/tertiaryTextColor"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtChartPrice"
         tools:ignore="RtlSymmetry" />
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="+8.1%"
-        android:textColor="@color/colorGain"
+        android:textColor="@color/tertiaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/txtChartChange1"
         app:layout_constraintStart_toEndOf="@+id/txtChartChange1"
         app:layout_constraintTop_toTopOf="@+id/txtChartChange1" />
@@ -70,16 +70,16 @@
         app:layout_constraintTop_toTopOf="@+id/sparkChartMain" />
 
     <com.robinhood.spark.SparkView
-        app:spark_animateChanges="true"
-        app:spark_lineColor="@color/bubble_gum_pink"
-        app:spark_scrubEnabled="true"
         android:id="@+id/sparkChartMain"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtChartChange1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtChartChange1"
+        app:spark_animateChanges="true"
+        app:spark_lineColor="@color/bubble_gum_pink"
+        app:spark_scrubEnabled="true" />
 
     <RadioGroup
         android:id="@+id/radioGroup"

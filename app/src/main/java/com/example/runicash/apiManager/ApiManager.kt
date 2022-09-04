@@ -25,7 +25,7 @@ class ApiManager {
 
     }
 
-    // for use in get all news from api
+    // for use in get all news from api =>
     fun getTopNews(apiCallback: ApiCallback<ArrayList<Pair<String, String>>>) {
 
         apiService.getTopNews().enqueue(object : Callback<TopNews> {
@@ -53,8 +53,7 @@ class ApiManager {
         })
 
     }
-
-    // get all coins from api
+    // get all coins from api =>
     fun getTopCoins(apiCallback: ApiCallback<List<TopCoins.Data>>) {
 
         apiService.getTopCoins().enqueue(object : Callback<TopCoins> {
@@ -75,7 +74,6 @@ class ApiManager {
         })
 
     }
-
     // get chart data from api =>
     fun getChartData(period: String, fsym: String, apiCallback: ApiCallback<Pair<List<ChartData.Data>, ChartData.Data?>>) {
 

@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 
+@Parcelize
 data class ChartData(
     @SerializedName("Aggregated")
     val aggregated: Boolean,
@@ -14,6 +15,10 @@ data class ChartData(
     val `data`: List<Data>,
     @SerializedName("FirstValueInArray")
     val firstValueInArray: Boolean,
+    @SerializedName("HasWarning")
+    val hasWarning: Boolean,
+    @SerializedName("RateLimit")
+    val rateLimit: RateLimit,
     @SerializedName("Response")
     val response: String,
     @SerializedName("TimeFrom")
@@ -22,14 +27,16 @@ data class ChartData(
     val timeTo: Int,
     @SerializedName("Type")
     val type: Int
-) {
+) : Parcelable {
+    @Parcelize
     data class ConversionType(
         @SerializedName("conversionSymbol")
         val conversionSymbol: String,
         @SerializedName("type")
         val type: String
-    )
+    ) : Parcelable
 
+    @Parcelize
     data class Data(
         @SerializedName("close")
         val close: Double,
@@ -49,5 +56,8 @@ data class ChartData(
         val volumefrom: Double,
         @SerializedName("volumeto")
         val volumeto: Double
-    )
+    ) : Parcelable
+
+    @Parcelize
+    class RateLimit : Parcelable
 }

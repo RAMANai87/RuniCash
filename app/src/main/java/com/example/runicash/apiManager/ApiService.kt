@@ -1,6 +1,5 @@
 package com.example.runicash.apiManager
 
-import com.example.runicash.Feature.CoinActivity.API_KEY
 import com.example.runicash.apiManager.model.ChartData
 import com.example.runicash.apiManager.model.TopCoins
 import com.example.runicash.apiManager.model.TopNews
@@ -24,12 +23,13 @@ interface ApiService {
         @Query("limit") limit_data: Int = 15
     ): Call<TopCoins>
 
+    @Headers(API_KEY)
     @GET("{period}")
     fun getChartData(
-        @Path("period") period :String ,
+        @Path("period") period :String,
         @Query("fsym") fromSymbol :String,
         @Query("limit") limit :Int,
-        @Query("aggregate") aggregate :Int,
+        @Query("aggregate")  aggregate:Int,
         @Query("tsym") toSymbol :String = "USD"
     ) :Call<ChartData>
 

@@ -5,8 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.runicash.Feature.MarketActivity.BUNDLE_ABOUT_COIN
@@ -130,7 +128,11 @@ class CoinActivity : AppCompatActivity() {
                 }
 
                 override fun onError(errorMessage: String) {
-                    binding.layoutChart.errorOnShowChart.isVisible = true
+                    if (!NetworkChecker(this@CoinActivity).isInternetConnected){
+                        binding.layoutChart.errorOnShowChart.isVisible = true
+                        binding.layoutChart.sparkChartMain.isVisible = false
+                    }
+
                 }
 
             })

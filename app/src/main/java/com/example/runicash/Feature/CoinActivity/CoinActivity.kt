@@ -26,6 +26,7 @@ class CoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // get data from activity main by intent and bundle
         val fromIntent = intent.getBundleExtra(SEND_BUNDLE_KEY)!!
 
         dataCurrentCoin = fromIntent.getParcelable<TopCoins.Data>(BUNDLE_COIN)!!
@@ -34,7 +35,7 @@ class CoinActivity : AppCompatActivity() {
 
         initUi()
     }
-    // load all part of this activity
+    // load all part of this activity by api =>
     private fun initUi() {
         initStatistics()
         initAbout()
@@ -131,8 +132,10 @@ class CoinActivity : AppCompatActivity() {
                     if (!NetworkChecker(this@CoinActivity).isInternetConnected){
                         binding.layoutChart.errorOnShowChart.isVisible = true
                         binding.layoutChart.sparkChartMain.isVisible = false
+                    }else {
+                        binding.layoutChart.errorOnShowChart.isVisible = false
+                        binding.layoutChart.sparkChartMain.isVisible = true
                     }
-
                 }
 
             })
